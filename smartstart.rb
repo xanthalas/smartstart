@@ -105,8 +105,12 @@ def run
       if c.isvalid?
         if c.start.start?
           puts "Starting command #{c.start.cmd}"
-          Process.spawn(c.start.cmd)
-          commands_run_count += 1
+          begin
+            Process.spawn('"' + c.start.cmd + '"')
+            commands_run_count += 1
+          rescue
+            puts "smartstart e009: An error occurred while trying to run command #{c.start.cmd}"
+          end
         else
           puts "Command #{c.start.cmd} won't be run"
         end
