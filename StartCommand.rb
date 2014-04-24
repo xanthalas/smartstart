@@ -1,6 +1,6 @@
 ##########################################################################################
 # Program: smartstart                                                                    #
-# Author : Xanthalas                                                                     #
+# Author : Xanthalas. Copyright (c) 2014 Xanthalas (xanthalas.live.co.uk)                #
 # Class  : StartCommand                                                                  #
 # File   : StartCommand.rb                                                               #
 #        : Holds details of a particular start command.                                  #

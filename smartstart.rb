@@ -1,6 +1,6 @@
 ##########################################################################################
 # Program: smartstart                                                                    #
-# Author : Xanthalas                                                                     #
+# Author : Xanthalas. Copyright (c) 2014 Xanthalas (xanthalas.live.co.uk)                #
 # Class  : <none>                                                                        #
 # File   : smartstart.rb                                                                 #
 #        : Top level program for the Smart Start application.                            #

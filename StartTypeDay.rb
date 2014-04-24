@@ -1,6 +1,6 @@
 ##########################################################################################
 # Program: smartstart                                                                    #
-# Author : Xanthalas                                                                     #
+# Author : Xanthalas. Copyright (c) 2014 Xanthalas (xanthalas.live.co.uk)                #
 # Class  : StartTypeDay                                                                  #
 # File   : StartTypeDay.rb                                                               #
 #        : Functionality and processing for DAY filter commands.                         #
