@@ -5,6 +5,21 @@
 # File   : StartCommand.rb                                                               #
 #        : Holds details of a particular start command.                                  #
 ##########################################################################################
+#          This file is part of smartstart.                                              #
+#                                                                                        #
+#          smartstart is free software: you can redistribute it and/or modify            #
+#          it under the terms of the GNU General Public License as published by          #
+#          the Free Software Foundation, either version 3 of the License, or             #
+#          (at your option) any later version.                                           #
+#                                                                                        #
+#          Foobar is distributed in the hope that it will be useful,                     #
+#          but WITHOUT ANY WARRANTY; without even the implied warranty of                #
+#          MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 #
+#          GNU General Public License for more details.                                  #
+#                                                                                        #
+#          You should have received a copy of the GNU General Public License             #
+#          along with Foobar.  If not, see <http://www.gnu.org/licenses/>.               #
+##########################################################################################
 require_relative './StartTypeDay'
 
 class StartCommand
@@ -29,10 +44,10 @@ class StartCommand
     @valid = @valid && (!command.nil? && command.length > 0) && (!conditions.nil? && conditions.length > 0)
     
     if isvalid?
-        case type
-        when 'DAY'
-          @start = StartTypeDay.new(command, conditions)
-        end
+      case type
+      when 'DAY'
+        @start = StartTypeDay.new(command, conditions)
+      end
     end
   end
 
