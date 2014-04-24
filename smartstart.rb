@@ -74,7 +74,7 @@ def add_startup
   end
 
   sc = StartCommand.new(ARGV[0], ARGV[1], ARGV[2])
-  if sc.isvalid?
+  if sc.isvalid? and sc.start.isvalid?
     @commands << sc
     save_file
   else

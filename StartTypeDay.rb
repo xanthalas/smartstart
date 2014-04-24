@@ -31,17 +31,25 @@ class StartTypeDay
   
   attr_accessor :reverse_test
 
+
   def initialize(command, conditions)
     @cmd = command
     @conditions = conditions
     @reverse_test = false
+    @valid = false
+    @valid_days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+    checkConditions(conditions)
   end
   
   def start_type
     return 'DAY'
   end
 
+
   def start?
+    if !isvalid?
+      return false
+    end
     today = Time.now.strftime("%^a")
     if @conditions.include? ","
       days = @conditions.split(",")
@@ -68,4 +76,41 @@ class StartTypeDay
       end
     end
   end
+
+  def checkConditions(c)
+    c = c.upcase
+
+    if c.length < 3 or (c.length > 3 and !c.include? ",")
+      @valid = false
+      return
+    end
+
+    if c.length == 3
+      if @valid_days.include? c
+        @valid = true
+        return
+      end
+    end
+
+    days = c.split(",")
+    if days.count == 0
+      @valid = false
+      return
+    end
+
+    days.each { |day|
+      if ! @valid_days.include? day
+        @valid = false
+        return
+      end
+    }
+
+    @valid = true        #If we get to here then the conditions are valid
+  end
+
+
+  def isvalid?
+    return @valid
+  end
+
 end
