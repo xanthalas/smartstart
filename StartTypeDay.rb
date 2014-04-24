@@ -23,4 +23,9 @@ class StartTypeDay
   def start_type
     return 'DAY'
   end
+
+  def start?
+      today = Time.now.strftime("%^a")
+      return @conditions.upcase == today
+  end
 end

@@ -16,6 +16,7 @@ require_relative 'StartCommand'
 
 Config_file = 'smartstart_commands.cfg'
 
+#{{{ Trollop setup
 opts = Trollop::options do
     version "SmartStart v 0.1 (c) Xanthalas 2014"
   banner <<-EOS
@@ -28,17 +29,22 @@ EOS
     opt :add, "Add a new startup"
     opt :delete, "Delete an existing startup"
     opt :list, "List all startup"
+    opt :run, "Run all startup commands"
 end
+#}}}
 
 @commands = Array.new
 
+#{{{ methods
 def save_file
   File.open(Config_file, 'w') {|f| f.write @commands.to_yaml }
 end
 
 def list_startups
+    index = 1
     @commands.each { |c| 
-        puts c.start.cmd
+        puts index.to_s + ". " + c.start.cmd + " [Type=" + c.start.start_type + "] [Condition=" + c.start.conditions + "]"
+        index+=1
     }
 end
 
@@ -57,10 +63,25 @@ def add_startup
   end
 end
 
+def delete_startup(index)
+    if index.nil?
+        puts "smartstart e003: Please specify the number of the command you want to delete. e.g. smartstart --delete 2"
+    else
+        index = index.to_i
+        if @commands.count <= (index-1) or index < 1
+            puts "smartstart e004: Command number #{index} can't be found"
+        else
+            @commands.delete_at(index-1)
+            save_file
+        end
+    end
+end
+#}}}
+
 if File.exist?(Config_file)
   @commands = open(Config_file) { |f| YAML.load(f) }
 end
 
 list_startups if opts[:list]
 add_startup if opts[:add]
-
+delete_startup(ARGV[0]) if opts[:delete]
